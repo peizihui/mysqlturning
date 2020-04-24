@@ -156,16 +156,80 @@ SELECT event_id,event_name,source,timer_wait,object_name,index_name,operation,ne
 
 # 2.数据更新流程
 
+## 2.1  
+
+--  句事件记录表，这些表记录了语句事件信息，当前语句事件表events_statements_current、历史语句事件表events_statements_history和长语句历史事件表events_statements_history_long、以及聚合后的摘要表summary，其中，summary表还可以根据帐号(account)，主机(host)，程序(program)，线程(thread)，用户(user)和全局(global)再进行细分)
+show tables like '%statement%';
 
 
 
-
-![image-20200424132525328](http://q8xc9za4f.bkt.clouddn.com/cloudflare/image-20200424132525328.png)
-
-
-
-mysql 数据存储；
+```
+show tables like '%statement%';
+```
 
 
 
-<img src="http://q8xc9za4f.bkt.clouddn.com/cloudflare/image-20200424132217698.png" alt="image-20200424132217698"  />
+![image-20200424172609666](http://q8xc9za4f.bkt.clouddn.com/cloudflare/image-20200424172609666.png)
+
+## 2.2  等待事件记录表，与语句事件类型的相关记录表类似：
+
+```
+--  等待事件记录表，与语句事件类型的相关记录表类似：
+show tables like '%wait%';
+
+```
+
+![image-20200424172913247](http://q8xc9za4f.bkt.clouddn.com/cloudflare/image-20200424172913247.png)
+
+## 2.3 阶段事件记录表，记录语句执行的阶段事件的表
+
+```
+
+
+-- 阶段事件记录表，记录语句执行的阶段事件的表
+show tables like '%stage%';
+```
+
+![image-20200424173019263](http://q8xc9za4f.bkt.clouddn.com/cloudflare/image-20200424173019263.png)
+
+
+
+## 2.4  事务事件记录表，记录事务相关的事件的表
+
+```
+-- 事务事件记录表，记录事务相关的事件的表
+show tables like '%transaction%';
+```
+
+![image-20200424173117699](http://q8xc9za4f.bkt.clouddn.com/cloudflare/image-20200424173117699.png)
+
+<img src="http://q8xc9za4f.bkt.clouddn.com/cloudflare/image-20200424173538682.png" alt="image-20200424173538682" style="zoom:150%;" />
+
+## 2.5 监控文件系统层调用的表
+
+```
+-- 监控文件系统层调用的表
+show tables like '%file%';
+```
+
+![image-20200424173641096](F:\daily shell\mysql-turning\Mysql 分析实际操作.assets\image-20200424173641096.png)
+
+## 2.6  监视内存使用的表
+
+```
+-- 监视内存使用的表
+show tables like '%memory%';
+```
+
+![image-20200424173318276](http://q8xc9za4f.bkt.clouddn.com/cloudflare/image-20200424173318276.png)
+
+![image-20200424173721906](http://q8xc9za4f.bkt.clouddn.com/cloudflare/image-20200424173721906.png)
+
+## 2.7  动态对performance_schema进行配置的配置表
+
+```
+-- 动态对performance_schema进行配置的配置表
+show tables like '%setup%';
+```
+
+![image-20200424173803433](http://q8xc9za4f.bkt.clouddn.com/cloudflare/image-20200424173803433.png)
